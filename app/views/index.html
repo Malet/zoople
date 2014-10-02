@@ -1,0 +1,26 @@
+This is the home page
+
+These are properties:
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Price pcm</th>
+      <th>Link</th>
+      <th>Coords</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="property in properties | orderBy:'prices.pcm':true">
+      <td>&pound;{{ property.prices.pcm }}</td>
+      <td>
+        <a ng-href="http://www.zoopla.co.uk/to-rent/details/{{ property.id }}">
+          {{ property.id }}
+        </a>
+      </td>
+      <td>
+        {{ property.coords.latitude }},
+        {{ property.coords.longitude }}
+      </td>
+  </tbody>
+</table>
