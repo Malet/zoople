@@ -18,7 +18,7 @@ These are properties:
           {{ property.id }}
         </a>
       </td>
-      <td>
+      <td ng-click="get_directions(property.coords.latitude + ' ' + property.coords.longitude, '240 Blackfriars, London')">
         {{ property.coords.latitude }},
         {{ property.coords.longitude }}
       </td>

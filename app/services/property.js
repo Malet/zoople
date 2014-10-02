@@ -1,6 +1,8 @@
 (function(){
   app.factory('Property', function($http, $q){
     var ZOOPLA_URL = 'http://www.zoopla.co.uk/to-rent/property/london/'
+    var DIRECTIONS_ENDPOINT = 'https://maps.googleapis.com/maps/api/directions/json'
+    var DIRECTIONS_API_KEY = 'AIzaSyCh-bPj1Pn7YGvUUn4NylNbMT-p_Jhz7pY'
 
     to_json = function(listings){
       return listings.map(function(){
@@ -39,6 +41,18 @@
           deferred = $q.defer();
           deferred.resolve(to_json($(response.data).find('ul.listing-results li')));
           return deferred.promise;
+        });
+      },
+      directions: function(origin, destination, mode){
+        mode = typeof mode !== 'undefined' ? mode : "transit";
+        return $http.get(DIRECTIONS_ENDPOINT, {
+          params: {
+            key: DIRECTIONS_API_KEY,
+            origin: origin,
+            destination: destination,
+            mode: mode,
+            departure_time: Math.round(new Date().getTime() / 1000)
+          }
         });
       }
     }
