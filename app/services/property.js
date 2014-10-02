@@ -33,7 +33,8 @@
             search_source: 'nav',
             view_type: 'grid',
             page_size: page_size
-          }
+          },
+          responseType: 'document'
         }).then(function(response){
           deferred = $q.defer();
           deferred.resolve(to_json($(response.data).find('ul.listing-results li')));
